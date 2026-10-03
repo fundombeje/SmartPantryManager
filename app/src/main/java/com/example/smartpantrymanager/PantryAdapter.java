@@ -71,7 +71,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         return items.size();
     }
 
-    private String formatQuantity(double quantity) {
+    static String formatQuantity(double quantity) {
         if (quantity == Math.rint(quantity)) {
             return String.valueOf((long) quantity);
         }
