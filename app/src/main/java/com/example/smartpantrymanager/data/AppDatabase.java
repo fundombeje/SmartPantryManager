@@ -18,9 +18,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase instance;
 
-    /** Room refuses to run queries on the main (UI) thread, so we use a background thread. */
     public static final ExecutorService databaseExecutor =
-            Executors.newFixedThreadPool(2);
+            Executors.newSingleThreadExecutor();
 
     /** Singleton: one database object shared by the whole app. */
     public static AppDatabase getInstance(Context context) {
