@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -72,6 +74,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadPantry();
+    }
+        /** Adds the toolbar menu. */
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            return true;
+        }
+
+        /** Opens the Suggested Recipes screen when its menu item is tapped. */
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            if (item.getItemId() == R.id.action_suggested) {
+                startActivity(new Intent(this, SuggestedRecipesActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
     }
 
     /** Reads the pantry on a background thread, then updates the UI on the main thread. */
