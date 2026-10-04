@@ -84,14 +84,18 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        /** Opens the Suggested Recipes screen when its menu item is tapped. */
-        @Override
-        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-            if (item.getItemId() == R.id.action_suggested) {
-                startActivity(new Intent(this, SuggestedRecipesActivity.class));
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+    /** Opens the Suggested Recipes or Settings screen when its menu item is tapped. */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_suggested) {
+            startActivity(new Intent(this, SuggestedRecipesActivity.class));
+            return true;
+        } else if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /** Reads the pantry on a background thread, then updates the UI on the main thread. */
