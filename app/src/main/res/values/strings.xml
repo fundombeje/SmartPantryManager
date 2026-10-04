@@ -15,4 +15,6 @@
     <string name="hint_expiry">Expiry date (optional)</string>
     <string name="clear_date">Clear date</string>
     <string name="save">Save</string>
+    <string name="suggested_recipes">Suggested recipes</string>
+    <string name="no_recipes_match">No recipes match your pantry yet - add more ingredients</string>
 </resources>
