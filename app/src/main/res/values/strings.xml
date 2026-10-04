@@ -20,4 +20,7 @@
     <string name="recipe_details">Recipe details</string>
     <string name="ingredients_heading">Ingredients</string>
     <string name="method_heading">Method</string>
+    <string name="settings">Settings</string>
+    <string name="setting_expiry_title">Highlight items expiring soon</string>
+    <string name="setting_expiry_description">Pantry items that expire within 3 days, or have already expired, are shown in red.</string>
 </resources>
