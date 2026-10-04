@@ -3,6 +3,7 @@ package com.example.smartpantrymanager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +51,12 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         recyclerRecipes.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecipeAdapter();
         recyclerRecipes.setAdapter(adapter);
+        // Tapping a recipe opens its detail screen, passing the recipe id in the Intent
+        adapter.setOnRecipeClickListener(recipe -> {
+            Intent intent = new Intent(this, RecipeDetailActivity.class);
+            intent.putExtra(RecipeDetailActivity.EXTRA_RECIPE_ID, recipe.id);
+            startActivity(intent);
+        });
     }
 
     /** Recalculate every time the screen is shown, so it always reflects the current pantry. */
