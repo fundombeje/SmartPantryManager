@@ -24,4 +24,7 @@ public interface RecipeDao {
 
     @Query("SELECT COUNT(*) FROM recipes")
     int getRecipeCount();
+
+    @Query("SELECT * FROM recipe_ingredients")
+    List<RecipeIngredient> getAllIngredients();
 }
