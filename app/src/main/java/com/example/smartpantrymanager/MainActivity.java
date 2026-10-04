@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // The setting may have just been changed on the Settings screen
+        adapter.setHighlightExpiring(AppSettings.isExpiryHighlightEnabled(this));
         loadPantry();
     }
         /** Adds the toolbar menu. */
