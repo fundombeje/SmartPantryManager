@@ -28,10 +28,21 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         this.listener = listener;
     }
 
-    /** Replaces the displayed list and redraws it. */
+        /** Replaces the displayed list and redraws it. A copy is kept so rows can be removed. */
     public void setItems(List<PantryItem> newItems) {
-        this.items = newItems;
+        this.items = new ArrayList<>(newItems);
         notifyDataSetChanged();
+    }
+
+    /** Returns the item shown at the given row position. */
+    public PantryItem getItemAt(int position) {
+        return items.get(position);
+    }
+
+    /** Removes one row from the list and animates it out. */
+    public void removeItem(int position) {
+        items.remove(position);
+        notifyItemRemoved(position);
     }
 
 
