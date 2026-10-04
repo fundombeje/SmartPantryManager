@@ -3,10 +3,14 @@ package com.example.smartpantrymanager.data;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Inserts the starter recipes into the database the first time the app runs. */
+/**
+ * Inserts the starter recipes into the database the first time the app runs.
+ */
 public class RecipeSeeder {
 
-    /** Must be called on a background thread. */
+    /**
+     * Must be called on a background thread.
+     */
     public static void seedIfEmpty(AppDatabase db) {
         RecipeDao dao = db.recipeDao();
         if (dao.getRecipeCount() > 0) {
@@ -100,7 +104,9 @@ public class RecipeSeeder {
         });
     }
 
-    /** Saves one recipe, then saves its ingredients linked by the new recipe id. */
+    /**
+     * Saves one recipe, then saves its ingredients linked by the new recipe id.
+     */
     private static void add(RecipeDao dao, String name, String steps, RecipeIngredient... items) {
         long recipeId = dao.insertRecipe(new Recipe(name, steps));
         List<RecipeIngredient> list = new ArrayList<>();
@@ -111,7 +117,9 @@ public class RecipeSeeder {
         dao.insertIngredients(list);
     }
 
-    /** Shorthand for creating an ingredient; recipeId is filled in by add(). */
+    /**
+     * Shorthand for creating an ingredient; recipeId is filled in by add().
+     */
     private static RecipeIngredient ing(String name, double quantity, String unit) {
         return new RecipeIngredient(0, name, quantity, unit);
     }

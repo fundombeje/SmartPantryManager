@@ -16,10 +16,14 @@ import com.example.smartpantrymanager.data.RecipeIngredient;
 
 import java.util.List;
 
-/** Shows one recipe: its name, the full ingredient list, and the preparation steps. */
+/**
+ * Shows one recipe: its name, the full ingredient list, and the preparation steps.
+ */
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    /** Key for the Intent extra that carries the id of the recipe to show. */
+    /**
+     * Key for the Intent extra that carries the id of the recipe to show.
+     */
     public static final String EXTRA_RECIPE_ID = "recipe_id";
     private static final int NO_ID = -1;
 
@@ -56,14 +60,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
         loadRecipe(recipeId);
     }
 
-    /** Makes the toolbar back arrow close this screen. */
+    /**
+     * Makes the toolbar back arrow close this screen.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
 
-    /** Loads the recipe and its ingredients on a background thread, then fills in the screen. */
+    /**
+     * Loads the recipe and its ingredients on a background thread, then fills in the screen.
+     */
     private void loadRecipe(int recipeId) {
         AppDatabase.databaseExecutor.execute(() -> {
             RecipeDao dao = AppDatabase.getInstance(getApplicationContext()).recipeDao();
@@ -82,7 +90,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         });
     }
 
-    /** Turns the ingredient rows into lines like "• 200 g pasta". */
+    /**
+     * Turns the ingredient rows into lines like "• 200 g pasta".
+     */
     private String buildIngredientList(List<RecipeIngredient> ingredients) {
         StringBuilder builder = new StringBuilder();
         for (RecipeIngredient ingredient : ingredients) {

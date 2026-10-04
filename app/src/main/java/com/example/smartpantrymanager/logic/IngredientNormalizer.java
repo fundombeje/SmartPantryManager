@@ -5,16 +5,23 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-/** Makes ingredient names and units comparable eg: singular/plural, kg vs g, l vs ml. */
+/**
+ * Makes ingredient names and units comparable eg: singular/plural, kg vs g, l vs ml.
+ */
 public final class IngredientNormalizer {
 
-    /** Words that end in "s" but are not plurals. */
+    /**
+     * Words that end in "s" but are not plurals.
+     */
     private static final Set<String> NOT_PLURAL = new HashSet<>(Arrays.asList(
             "hummus", "couscous", "asparagus", "citrus", "molasses", "watercress"));
 
-    private IngredientNormalizer() { }
+    private IngredientNormalizer() {
+    }
 
-    /** A quantity converted to a base unit: "g", "ml", "pcs" */
+    /**
+     * A quantity converted to a base unit: "g", "ml", "pcs"
+     */
     public static final class BaseQuantity {
         public final double amount;
         public final String unit;
@@ -25,7 +32,9 @@ public final class IngredientNormalizer {
         }
     }
 
-    /** "  Fresh Tomatoes! " becomes "fresh tomato". */
+    /**
+     * "  Fresh Tomatoes! " becomes "fresh tomato".
+     */
     public static String normalizeName(String raw) {
         if (raw == null) {
             return "";
@@ -42,7 +51,9 @@ public final class IngredientNormalizer {
         return prefix + singularize(lastWord);
     }
 
-    /** Simple rule-based singular form; deliberately not a full language model. */
+    /**
+     * Simple rule-based singular form; deliberately not a full language model.
+     */
     static String singularize(String word) {
         if (word.length() <= 3 || NOT_PLURAL.contains(word)) {
             return word;
@@ -66,7 +77,9 @@ public final class IngredientNormalizer {
         return word;
     }
 
-    /** Converts a quantity into its base unit so different units can be compared. */
+    /**
+     * Converts a quantity into its base unit so different units can be compared.
+     */
     public static BaseQuantity toBase(double quantity, String unit) {
         String u = unit == null ? "" : unit.trim().toLowerCase(Locale.ROOT);
         switch (u) {

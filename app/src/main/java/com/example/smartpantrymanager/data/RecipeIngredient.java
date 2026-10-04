@@ -6,7 +6,9 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-/** One ingredient line of a recipe. Deleting a recipe deletes its ingredients. */
+/**
+ * One ingredient line of a recipe. Deleting a recipe deletes its ingredients.
+ */
 @Entity(
         tableName = "recipe_ingredients",
         foreignKeys = @ForeignKey(
@@ -25,7 +27,8 @@ public class RecipeIngredient {
     public double quantity;
     public String unit;
 
-    public RecipeIngredient() { }
+    public RecipeIngredient() {
+    }
 
     @Ignore
     public RecipeIngredient(int recipeId, String name, double quantity, String unit) {

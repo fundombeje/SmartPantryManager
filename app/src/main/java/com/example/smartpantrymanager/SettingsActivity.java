@@ -9,7 +9,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-/** Settings screen: currently one switch, for highlighting items that are expiring soon. */
+/**
+ * Settings screen: currently one switch, for highlighting items that are expiring soon.
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -35,7 +37,9 @@ public class SettingsActivity extends AppCompatActivity {
                 AppSettings.setExpiryHighlightEnabled(this, isChecked));
     }
 
-    /** Makes the toolbar back arrow close this screen. */
+    /**
+     * Makes the toolbar back arrow close this screen.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         finish();

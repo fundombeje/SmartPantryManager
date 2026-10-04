@@ -15,10 +15,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Shows the suggested recipes in a RecyclerView: one card per recipe. */
+/**
+ * Shows the suggested recipes in a RecyclerView: one card per recipe.
+ */
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    /** Lets the Activity react when a recipe is tapped (opens the detail screen). */
+    /**
+     * Lets the Activity react when a recipe is tapped (opens the detail screen).
+     */
     public interface OnRecipeClickListener {
         void onRecipeClick(Recipe recipe);
     }
@@ -31,7 +35,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         this.listener = listener;
     }
 
-    /** Replaces the displayed recipes; counts maps recipe id to its number of ingredients. */
+    /**
+     * Replaces the displayed recipes; counts maps recipe id to its number of ingredients.
+     */
     public void setRecipes(List<Recipe> newRecipes, Map<Integer, Integer> counts) {
         this.recipes = new ArrayList<>(newRecipes);
         this.ingredientCounts = counts;
@@ -67,7 +73,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipes.size();
     }
 
-    /** Holds the views of one recipe row. */
+    /**
+     * Holds the views of one recipe row.
+     */
     static class RecipeViewHolder extends RecyclerView.ViewHolder {
         final TextView textName;
         final TextView textCount;

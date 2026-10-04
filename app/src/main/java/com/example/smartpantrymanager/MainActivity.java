@@ -2,10 +2,10 @@ package com.example.smartpantrymanager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -69,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         setUpSwipeToDelete(recyclerPantry);
     }
 
-    /** Reload every time the screen comes back to the foreground, so the list is never stale. */
+    /**
+     * Reload every time the screen comes back to the foreground, so the list is never stale.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -77,14 +79,19 @@ public class MainActivity extends AppCompatActivity {
         adapter.setHighlightExpiring(AppSettings.isExpiryHighlightEnabled(this));
         loadPantry();
     }
-        /** Adds the toolbar menu. */
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_main, menu);
-            return true;
-        }
 
-    /** Opens the Suggested Recipes or Settings screen when its menu item is tapped. */
+    /**
+     * Adds the toolbar menu.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    /**
+     * Opens the Suggested Recipes or Settings screen when its menu item is tapped.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -98,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Reads the pantry on a background thread, then updates the UI on the main thread. */
+    /**
+     * Reads the pantry on a background thread, then updates the UI on the main thread.
+     */
     private void loadPantry() {
         AppDatabase.databaseExecutor.execute(() -> {
             List<PantryItem> items = AppDatabase.getInstance(getApplicationContext())
@@ -110,12 +119,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Shows the "pantry is empty" message only when there are no rows. */
+    /**
+     * Shows the "pantry is empty" message only when there are no rows.
+     */
     private void updateEmptyState() {
         textEmpty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
-    /** Lets the user swipe a row left or right to delete it. */
+    /**
+     * Lets the user swipe a row left or right to delete it.
+     */
     private void setUpSwipeToDelete(RecyclerView recyclerView) {
         ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(
                 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -138,7 +151,9 @@ public class MainActivity extends AppCompatActivity {
         new ItemTouchHelper(swipeCallback).attachToRecyclerView(recyclerView);
     }
 
-    /** Removes the row immediately, deletes it from the database, and offers an Undo. */
+    /**
+     * Removes the row immediately, deletes it from the database, and offers an Undo.
+     */
     private void deleteItemAt(int position) {
         PantryItem item = adapter.getItemAt(position);
         adapter.removeItem(position);
@@ -154,7 +169,9 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    /** Undo: puts the deleted item back in the database with same id, then reloads the list. */
+    /**
+     * Undo: puts the deleted item back in the database with same id, then reloads the list.
+     */
     private void restoreItem(PantryItem item) {
         AppDatabase.databaseExecutor.execute(() -> {
             AppDatabase.getInstance(getApplicationContext()).pantryItemDao().insert(item);

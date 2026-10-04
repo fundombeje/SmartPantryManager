@@ -22,10 +22,14 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.Calendar;
 import java.util.Locale;
 
-/** Form used both to add a new pantry item and to edit an existing one. */
+/**
+ * Form used both to add a new pantry item and to edit an existing one.
+ */
 public class AddEditItemActivity extends AppCompatActivity {
 
-    /** Key for the Intent extra that carries the id of the item being edited. */
+    /**
+     * Key for the Intent extra that carries the id of the item being edited.
+     */
     public static final String EXTRA_ITEM_ID = "item_id";
     private static final int NO_ID = -1;
 
@@ -36,7 +40,9 @@ public class AddEditItemActivity extends AppCompatActivity {
     private TextInputEditText editExpiry;
     private Spinner spinnerUnit;
 
-    /** NO_ID means we are adding a new item; any other value means we are editing. */
+    /**
+     * NO_ID means we are adding a new item; any other value means we are editing.
+     */
     private int itemId = NO_ID;
 
     @Override
@@ -83,7 +89,9 @@ public class AddEditItemActivity extends AppCompatActivity {
         }
     }
 
-    /** Makes the toolbar back arrow close this screen. */
+    /**
+     * Makes the toolbar back arrow close this screen.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         finish();
@@ -134,7 +142,9 @@ public class AddEditItemActivity extends AppCompatActivity {
                 year, month, day).show();
     }
 
-    /** Validates the form, if all is valid then saves the item. */
+    /**
+     * Validates the form, if all is valid then saves the item.
+     */
     private void saveItem() {
         String name = editName.getText() == null ? "" : editName.getText().toString().trim();
         // Some regional settings use a comma as the decimal separator, so accept both
@@ -180,7 +190,9 @@ public class AddEditItemActivity extends AppCompatActivity {
         persistItem(name, quantity, unit, expiry);
     }
 
-    /** Inserts a new item or updates the existing one, then closes the screen. */
+    /**
+     * Inserts a new item or updates the existing one, then closes the screen.
+     */
     private void persistItem(String name, double quantity, String unit, String expiry) {
         AppDatabase.databaseExecutor.execute(() -> {
             PantryItemDao dao = AppDatabase.getInstance(getApplicationContext()).pantryItemDao();

@@ -1,9 +1,9 @@
 package com.example.smartpantrymanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +23,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Lists only the recipes the user can cook right now, using the strict-matching rule. */
+/**
+ * Lists only the recipes the user can cook right now, using the strict-matching rule.
+ */
 public class SuggestedRecipesActivity extends AppCompatActivity {
 
     private RecipeAdapter adapter;
@@ -59,21 +61,27 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         });
     }
 
-    /** Recalculate every time the screen is shown, so it always reflects the current pantry. */
+    /**
+     * Recalculate every time the screen is shown, so it always reflects the current pantry.
+     */
     @Override
     protected void onResume() {
         super.onResume();
         loadSuggestions();
     }
 
-    /** Makes the toolbar back arrow close this screen. */
+    /**
+     * Makes the toolbar back arrow close this screen.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
 
-    /** Reads the database and runs the strict matcher on a background thread. */
+    /**
+     * Reads the database and runs the strict matcher on a background thread.
+     */
     private void loadSuggestions() {
         AppDatabase.databaseExecutor.execute(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());

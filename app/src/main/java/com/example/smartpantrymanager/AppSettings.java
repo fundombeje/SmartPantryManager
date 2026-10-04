@@ -3,15 +3,20 @@ package com.example.smartpantrymanager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/** Reads and saves the user's settings (kept on the device, survives app restarts). */
+/**
+ * Reads and saves the user's settings (kept on the device, survives app restarts).
+ */
 public final class AppSettings {
 
     private static final String PREFS_NAME = "smart_pantry_settings";
     private static final String KEY_HIGHLIGHT_EXPIRING = "highlight_expiring";
 
-    private AppSettings() { }
+    private AppSettings() {
+    }
 
-    /** Whether expiring items should be highlighted in red. On by default. */
+    /**
+     * Whether expiring items should be highlighted in red. On by default.
+     */
     public static boolean isExpiryHighlightEnabled(Context context) {
         return prefs(context).getBoolean(KEY_HIGHLIGHT_EXPIRING, true);
     }
