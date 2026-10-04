@@ -17,4 +17,7 @@
     <string name="save">Save</string>
     <string name="suggested_recipes">Suggested recipes</string>
     <string name="no_recipes_match">No recipes match your pantry yet - add more ingredients</string>
+    <string name="recipe_details">Recipe details</string>
+    <string name="ingredients_heading">Ingredients</string>
+    <string name="method_heading">Method</string>
 </resources>
